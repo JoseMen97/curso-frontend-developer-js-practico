@@ -3,6 +3,7 @@ const deployMenu = document.querySelector('#deploy-menu')
 const carrito = document.querySelector('.navbar-shopping-cart')
 const productDetailClose = document.querySelector('.product-detail-close')
 const productDetailContainer = document.getElementById('productDetail')
+const arrowCloseShopping = document.getElementById('arrowCloseShopping')
 
 const desktopMenu = document.querySelector('.desktop-menu')
 const mobileMenu = document.querySelector('.mobile-menu')
@@ -13,6 +14,7 @@ menuEmail.addEventListener('click',toggleDesktopMenu)
 deployMenu.addEventListener('click',togglemobileMenu)
 carrito.addEventListener('click',toggleMenuCarrito)
 productDetailClose.addEventListener('click',closeProductDetail)
+arrowCloseShopping.addEventListener('click',closeShoppingCart)
 
 function toggleDesktopMenu(){
     if (!shoppingCartContainer.classList.contains('inactive')){
@@ -51,6 +53,9 @@ function openProductDetail(){
     productDetailContainer.classList.remove('inactive')
 }
 
+function closeShoppingCart(){
+    shoppingCartContainer.classList.add('inactive')
+}
 
 const productList = [];
 

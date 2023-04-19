@@ -1,6 +1,9 @@
 const menuEmail = document.querySelector('.navbar-email')
 const deployMenu = document.querySelector('#deploy-menu')
 const carrito = document.querySelector('.navbar-shopping-cart')
+const productDetailClose = document.querySelector('.product-detail-close')
+const productDetailContainer = document.getElementById('productDetail')
+
 const desktopMenu = document.querySelector('.desktop-menu')
 const mobileMenu = document.querySelector('.mobile-menu')
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer')
@@ -9,27 +12,43 @@ const cardsContainer = document.querySelector('.cards-container')
 menuEmail.addEventListener('click',toggleDesktopMenu)
 deployMenu.addEventListener('click',togglemobileMenu)
 carrito.addEventListener('click',toggleMenuCarrito)
+productDetailClose.addEventListener('click',closeProductDetail)
 
 function toggleDesktopMenu(){
     if (!shoppingCartContainer.classList.contains('inactive')){
-        shoppingCartContainer.classList.toggle('inactive')
+        shoppingCartContainer.classList.add('inactive')
     }
+    closeProductDetail()
     desktopMenu.classList.toggle('inactive')
 }
 function togglemobileMenu(){
     if (!shoppingCartContainer.classList.contains('inactive')){
-        shoppingCartContainer.classList.toggle('inactive')
+        shoppingCartContainer.classList.add('inactive')
     }
+    closeProductDetail()
     mobileMenu.classList.toggle('inactive')
 }
 function toggleMenuCarrito(){
     if (!mobileMenu.classList.contains('inactive')){
-        mobileMenu.classList.toggle('inactive')
+        mobileMenu.classList.add('inactive')
     }
-    if (!desktopMenu.classList.toggle('inactive')){
-        desktopMenu.classList.toggle('inactive')
+    if (!desktopMenu.classList.contains('inactive')){
+        desktopMenu.classList.add('inactive')
     }
+    closeProductDetail()
     shoppingCartContainer.classList.toggle('inactive')
+}
+
+function closeProductDetail(){
+    productDetailContainer.classList.add('inactive')
+}
+
+function openProductDetail(){
+    mobileMenu.classList.add('inactive')
+    desktopMenu.classList.add('inactive')
+    shoppingCartContainer.classList.add('inactive')
+    
+    productDetailContainer.classList.remove('inactive')
 }
 
 
@@ -96,6 +115,7 @@ function renderProducts(arr){
 
         const productImg = document.createElement('img')
         productImg.setAttribute('src',product.image)
+        productImg.addEventListener('click',openProductDetail)
         
         const productInfo = document.createElement('div')
         productInfo.classList.add('product-info')
